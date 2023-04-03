@@ -16,6 +16,7 @@ struct Particle {
   glm::vec4 color;
   float rot;
   float size;
+  float t;
 };
 
 class Viewer : public Window {
@@ -25,7 +26,6 @@ public:
 
   void setup() {
     setWindowSize(1000, 1000);
-    createConfetti(500);
     renderer.setDepthTest(false);
     renderer.blendMode(agl::ADD);
   }
@@ -37,16 +37,29 @@ public:
     {
       Particle particle;
       particle.color = vec4(agl::randomUnitCube(), 1);
+      particle.t = glfwGetTime();
       particle.size = 0.25;
       particle.rot = 0.0;
-      particle.pos = agl::randomUnitCube();
-      particle.vel = agl::randomUnitCube();
+      particle.pos = position;
+      particle.vel = vec3(-position.y, position.x, 0) + agl::randomUnitCube();
       mParticles.push_back(particle);
     }
   }
 
   void updateConfetti()
   {
+      for (int i = 0; i < mParticles.size(); i++) {
+          mParticles[i].pos = mParticles[i].pos + (mParticles[i].vel * dt());
+          mParticles[i].color.a = mParticles[i].color.a * 0.97;
+          if (glfwGetTime() - mParticles[i].t > 1.5) {
+              mParticles[i].color = vec4(agl::randomUnitCube(), 1);
+              mParticles[i].t = glfwGetTime();
+              mParticles[i].size = 0.25;
+              mParticles[i].rot = 0.0;
+              mParticles[i].pos = position;
+              mParticles[i].vel = vec3(-position.y, position.x, 0) + agl::randomUnitCube();
+          }
+      }
   }
 
   void drawConfetti()
@@ -77,10 +90,13 @@ public:
 
   void draw() {
     renderer.beginShader("sprite");
-
+    position.x = cos(glfwGetTime());
+    position.y = sin(-glfwGetTime());
+    if (mParticles.size() < 1000) {
+        createConfetti(1);
+    }
     float aspect = ((float)width()) / height();
     renderer.perspective(glm::radians(60.0f), aspect, 0.1f, 50.0f);
-
     renderer.lookAt(eyePos, lookPos, up);
     renderer.sprite(position, vec4(1.0f), 0.25f);
     updateConfetti();
