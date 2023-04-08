@@ -39,7 +39,7 @@ public:
     {
       Particle particle;
       particle.color = vec4(agl::randomUnitCube(), 1);
-      particle.size = 0.25;
+      particle.size = 0.15;
       particle.rot = 0.0;
       particle.pos = agl::randomUnitCube();
       particle.vel = agl::randomUnitCube();

@@ -1,6 +1,3 @@
-// Bryn Mawr College, alinen, 2020
-//
-
 #include <cmath>
 #include <string>
 #include <vector>
@@ -44,16 +41,18 @@ public:
   void draw() {
     renderer.beginShader("billboard-animated");
     renderer.texture("image", "explosion");
-    frame = int(prvious_frame + (elapsedTime() * 30));
-    frame_var_r = frame % (numRows * numCols);
-    frame_var_c = int(frame / numCols);
-    
-    frame = 0;
-    renderer.setUniform("Frame", frame);
+    frame = (elapsedTime() * 30);
+
+    int frames = int(frame);
+    int frame_var_c = numRows - (frames / numCols);
+    int frame_var_r = frames % (numCols* numCols); 
+
+    renderer.setUniform("Frame", frames);
+  
+    renderer.setUniform("Row_Num", frame_var_r);
+    renderer.setUniform("Col_Num", frame_var_c);
     renderer.setUniform("Rows", numRows);
     renderer.setUniform("Cols", numCols);
-    renderer.setUniform("Frame_Var_R", frame_var_r);
-    renderer.setUniform("Frame_Var_C", frame_var_c);
 
     float aspect = ((float)width()) / height();
     renderer.perspective(glm::radians(60.0f), aspect, 0.1f, 50.0f);
@@ -71,10 +70,7 @@ protected:
   vec3 up = vec3(0, 1, 0);
   int frame = 0;
   int numRows = 8;
-  int numCols = 16;
-  int prvious_frame = 0;
-  int frame_var_r;
-  int frame_var_c;
+  int numCols = 8;
 };
 
 int main(int argc, char** argv)
