@@ -55,7 +55,6 @@ particles/build $ ../bin/explosion
 
 [screen-capture (8).webm](https://user-images.githubusercontent.com/44120884/231350007-a6d9e2c0-298d-4388-b5d3-46531b186c75.webm)
 
-[screen-capture (9).webm](https://user-images.githubusercontent.com/44120884/231350008-5a33ea79-d427-4587-b558-845e6b3bce99.webm)
 
 
 ## Unique features 
