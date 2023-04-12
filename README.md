@@ -49,15 +49,20 @@ particles/build $ ../bin/explosion
 
 ## Demo of basic features
 
+# Billboard Axis
 [screen-capture (11).webm](https://user-images.githubusercontent.com/44120884/231349798-9cd40aaf-7de9-40a0-b584-c9394a9aec4f.webm)
 
+# Sparkle Trail
 [screen-capture (10).webm](https://user-images.githubusercontent.com/44120884/231349985-0375cd81-151b-4a85-a3f4-7b1aaf9ad03a.webm)
 
+# Explosion
 [screen-capture (8).webm](https://user-images.githubusercontent.com/44120884/231350007-a6d9e2c0-298d-4388-b5d3-46531b186c75.webm)
 
 
 
 ## Unique features 
+
+# Make It Rain
 [screen-capture (12).webm](https://user-images.githubusercontent.com/44120884/231350020-9eccd2cb-b18e-4b98-bb7e-a7041e8f13e7.webm)
 
 
